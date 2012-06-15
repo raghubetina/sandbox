@@ -1,4 +1,6 @@
 Sandbox::Application.routes.draw do
+  get "auth/facebook"
+
   root to: 'users#index'
   
   resources :users
