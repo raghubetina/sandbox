@@ -1,3 +1,9 @@
+<ul>
+<% @friends.each do |friend_hash| %>
+	<li><%= image_tag "https://graph.facebook.com/#{friend_hash["id"]}/picture" %> <%= friend_hash["name"] %></li>
+<% end %>
+</ul>
+
 <p><%= link_to "Authorize Facebook", "https://www.facebook.com/dialog/oauth?client_id=249187265194708&redirect_uri=http://localhost:3000/auth/facebook" %><p>
 
 <p>

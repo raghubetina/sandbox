@@ -11,6 +11,13 @@ class AuthController < ApplicationController
     
     user = User.find(session[:user_id])
     
+    uri = "https://graph.facebook.com/me?access_token=#{user.facebook_access_token}"
+    
+    response = JSON.parse(open(uri).read)
+    
+    user.facebook_id = response["id"]
+    user.name = response["name"]
+    user.location = response["location"]["name"]
     user.facebook_access_token = access_token
     
     user.save

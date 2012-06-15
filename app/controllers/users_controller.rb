@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -14,6 +16,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    
+    uri = "https://graph.facebook.com/me/friends?access_token=#{@user.facebook_access_token}"
+    
+    @response = JSON.parse(open(uri).read)
+    
+    @friends = @response["data"]
 
     respond_to do |format|
       format.html # show.html.erb
