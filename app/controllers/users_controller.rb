@@ -1,6 +1,32 @@
 require 'open-uri'
 
 class UsersController < ApplicationController
+  def get_friends
+    user = User.find(session[:user_id])
+    
+    user.friends.destroy_all
+    
+    uri = "https://graph.facebook.com/me/friends?fields=name,id,location&access_token=#{user.facebook_access_token}"
+    
+    response = JSON.parse(open(uri).read)
+    
+    friends = response["data"]
+    
+    friends.each do |friend_hash|
+      f = Friend.new
+      f.user_id = user.id
+      f.facebook_id = friend_hash["id"]
+      f.name = friend_hash["name"]
+      if friend_hash["location"].present?
+        f.location = friend_hash["location"]["name"]
+      end
+      f.save
+    end
+    
+    redirect_to user
+  end
+  
+  
   # GET /users
   # GET /users.json
   def index

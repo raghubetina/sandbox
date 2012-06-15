@@ -15,10 +15,12 @@ class AuthController < ApplicationController
     
     response = JSON.parse(open(uri).read)
     
+    user.facebook_access_token = access_token
     user.facebook_id = response["id"]
     user.name = response["name"]
-    user.location = response["location"]["name"]
-    user.facebook_access_token = access_token
+    if response["location"].present?
+      user.location = response["location"]["name"]
+    end
     
     user.save
     
