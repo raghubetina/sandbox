@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'gmaps4rails'
+
 gem 'quiet_assets', :group => :development
 
 gem 'rails', '3.2.3'
