@@ -4,7 +4,7 @@ class AuthController < ApplicationController
   def facebook
     code = params[:code]
     
-    uri =  "https://graph.facebook.com/oauth/access_token?client_id=249187265194708&redirect_uri=http://localhost:3000/auth/facebook&client_secret=9a7277bdb4b1ff0ad232eadd806e5011&code=#{@code}"
+    uri =  "https://graph.facebook.com/oauth/access_token?client_id=249187265194708&redirect_uri=http://localhost:3000/auth/facebook&client_secret=9a7277bdb4b1ff0ad232eadd806e5011&code=#{code}"
     response = open(uri).read
     
     access_token = response.split('&').first.split('=').last
