@@ -1,0 +1,28 @@
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Facebook access token:</b>
+  <%= @user.facebook_access_token %>
+</p>
+
+<p>
+  <b>Facebook:</b>
+  <%= @user.facebook_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @user.location %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

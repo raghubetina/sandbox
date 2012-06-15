@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<p id="notice"><%= notice %></p>
+
+	<% if session[:user_id].present? %>
+		<%= link_to "Sign Out", '/sessions/destroy' %>
+	<% else %>
+		<%= link_to "Sign Up", '/users/new' %> or <%= link_to "Sign In", '/sessions/new' %>
+	<% end %>
 
 <%= yield %>
 
