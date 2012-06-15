@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'quiet_assets', :group => :development
+
 gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
